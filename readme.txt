@@ -1,4 +1,4 @@
-=== TubeList ===
+=== Tubelist ===
 Contributors: kmfoysal06
 Tags: youtube, playlist, loader, api
 Requires at least: 6.0

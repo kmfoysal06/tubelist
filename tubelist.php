@@ -89,7 +89,7 @@ function tubelist_settings_page_html() {
         return;
     }
     if (isset($_POST['tubelist_api_key'])) {
-        $api_key = sanitize_text_field($_POST['tubelist_api_key']);
+        $api_key = sanitize_text_field(wp_unslash($_POST['tubelist_api_key']));
         if (!empty($api_key)) {
             update_option('tubelist_api_key', $api_key);
         }
@@ -105,8 +105,24 @@ function tubelist_settings_page_html() {
     $html .= '<td><input type="text" name="tubelist_api_key" value="' . esc_attr($api_key) . '" class="regular-text" /></td>';
     $html .= '</tr>';
     $html .= '</table>';
-    $html .= '<p class="submit"><input type="submit" class="button button-primary" value="Save Changes" /></p>';
+    $html .= wp_nonce_field('tubelist_settings_save', 'tubelist_settings_nonce', true, false);
+    $html .= '<p class="submit"><input type="submit" class="button button-primary" value="Save Changes" name="tubelist_submit" /></p>';
     $html .= '</form>';
     $html .= '</div>';
-    echo $html;
+    echo wp_kses(
+        $html,
+        [
+            'div' => ['class' => []],
+            'h1' => [],
+            'form' => ['method' => [], 'action' => []],
+            'table' => ['class' => []],
+            'tr' => [],
+            'th' => ['scope' => []],
+            'td' => [],
+            'input' => ['type' => [], 'name' => [], 'value' => [], 'class' => []],
+            'p' => ['class' => []],
+            'button' => ['class' => [], 'type' => [], 'value' => []]
+        ]
+    );
+
 }
