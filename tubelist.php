@@ -1,11 +1,23 @@
 <?php
 /**
- * Plugin Name: Playlist Loader
- * Description: A simple plugin to load and display playlists.
+ * @package TubeList
+ * Plugin Name: Tubelist
+ * Description: A simple plugin to load and display youtube playlists through shortcode with the help of youtube v3 api.
  * Author: kmfoysal06
+ * Tags: youtube, playlist, tubelist, shortcode, api
  * Version: 1.0
- * License: GPL2
+ * Requires at least: 6.0
+ * Tested up to: 6.8
+ * Requires PHP: 7.0
+ * License: GPL3
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
+ * Text Domain: tubelist
  */
+
+
+
+
+
 if(!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
