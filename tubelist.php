@@ -9,17 +9,15 @@
 if(!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
-if (!file_exists(plugin_dir_path(__FILE__) . '.env')) {
-    wp_die('cannot open the environment file');
-}
 if(!defined("TUBELIST_DIR")) {
     define("TUBELIST_DIR", plugin_dir_path(__FILE__));
 }
 if(!defined("TUBELIST_URI")) {
     define("TUBELIST_URI", plugin_dir_url(__FILE__));
 }
-
-require_once(plugin_dir_path(__FILE__) . '.env');
+if(!defined("PLAYLIST_API_KEY")) {
+    define("PLAYLIST_API_KEY", get_option('tubelist_api_key', ''));
+}
 
 function tubelist_load_playlist($playlist_id) {
      $api_key = PLAYLIST_API_KEY;
@@ -67,3 +65,36 @@ function tubelist_assets() {
 }
 
 add_action('wp_enqueue_scripts', 'tubelist_assets');
+
+// a settings page to provide api key and save it
+function tubelist_settings_page() {
+    add_options_page('TubeList Settings', 'TubeList', 'manage_options', 'tubelist-settings', 'tubelist_settings_page_html');
+}
+add_action('admin_menu', 'tubelist_settings_page');
+
+function tubelist_settings_page_html() {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+    if (isset($_POST['tubelist_api_key'])) {
+        $api_key = sanitize_text_field($_POST['tubelist_api_key']);
+        if (!empty($api_key)) {
+            update_option('tubelist_api_key', $api_key);
+        }
+    }
+    $api_key = get_option('tubelist_api_key', '');
+    $html = '';
+    $html .= '<div class="wrap">';
+    $html .= '<h1>TubeList Settings</h1>';
+    $html .= '<form method="post" action="">';
+    $html .= '<table class="form-table">';
+    $html .= '<tr valign="top">';
+    $html .= '<th scope="row">API Key</th>';
+    $html .= '<td><input type="text" name="tubelist_api_key" value="' . esc_attr($api_key) . '" class="regular-text" /></td>';
+    $html .= '</tr>';
+    $html .= '</table>';
+    $html .= '<p class="submit"><input type="submit" class="button button-primary" value="Save Changes" /></p>';
+    $html .= '</form>';
+    $html .= '</div>';
+    echo $html;
+}
