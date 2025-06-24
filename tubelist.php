@@ -12,6 +12,13 @@ if(!defined('ABSPATH')) {
 if (!file_exists(plugin_dir_path(__FILE__) . '.env')) {
     wp_die('cannot open the environment file');
 }
+if(!defined("TUBELIST_DIR")) {
+    define("TUBELIST_DIR", plugin_dir_path(__FILE__));
+}
+if(!defined("TUBELIST_URI")) {
+    define("TUBELIST_URI", plugin_dir_url(__FILE__));
+}
+
 require_once(plugin_dir_path(__FILE__) . '.env');
 
 function tubelist_load_playlist($playlist_id) {
@@ -49,3 +56,14 @@ function tubelist_load_playlist($playlist_id) {
     $playlist_items = tubelist_load_playlist($id);
     return $playlist_items;
  });
+function tubelist_assets() {
+    wp_register_style('tubelist-style', TUBELIST_URI . 'assets/css/playlist.css', [], filemtime(TUBELIST_DIR . 'assets/css/playlist.css'));
+
+    wp_register_script('tubelist-script', TUBELIST_URI . 'assets/js/playlist.js', [], filemtime(TUBELIST_DIR . 'assets/js/playlist.js'), true);
+    if (has_shortcode(get_post()->post_content, 'tubelist')) {
+        wp_enqueue_style('tubelist-style');
+        wp_enqueue_script('tubelist-script');
+    } 
+}
+
+add_action('wp_enqueue_scripts', 'tubelist_assets');

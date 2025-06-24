@@ -7,9 +7,7 @@ if(!defined('ABSPATH')) {
 }
 
 ?>
-    <style>
-    </style>
-    <div class="tubelist-container">
+   <div class="tubelist-container">
         <div class="top-section">
             <div class="main-content tubelist-main-video">
                     <?php 
@@ -34,15 +32,4 @@ if(!defined('ABSPATH')) {
                 
              </div>
         </div>
-        
-        <div class="bottom-section">
-            <div class="placeholder-text">
-                Bottom Content Section - Additional content area for footer or supplementary information
-            </div>
-        </div>
     </div>
-
-    <script>
-        // Simple interactive functionality
-
-    </script>
