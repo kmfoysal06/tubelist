@@ -35,8 +35,7 @@ function load_playlist($playlist_id) {
         ];
     }, $items);
     $videos = $items_mapped;
-    return 'hi';
-    
+    include_once(plugin_dir_path(__FILE__) . 'layout.php');
  };
 
  add_shortcode('kmfoysal06_playlist', function($atts) {
