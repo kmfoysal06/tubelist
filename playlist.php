@@ -35,8 +35,7 @@ function load_playlist($playlist_id) {
         ];
     }, $items);
     $videos = $items_mapped;
-    ?>
-return 'hi';
+    return 'hi';
     
  };
 
