@@ -46,6 +46,6 @@ function tubelist_load_playlist($playlist_id) {
     if (empty($id)) {
         return '<p>Please provide a playlist ID.</p>';
     }
-    $playlist_items = load_playlist($id);
+    $playlist_items = tubelist_load_playlist($id);
     return $playlist_items;
  });
