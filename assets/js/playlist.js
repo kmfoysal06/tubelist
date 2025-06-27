@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const title = this.querySelector("h4").textContent;
             const videoId = this.getAttribute("data-video-id");
             const embeddUrl = `https://www.youtube.com/embed/${videoId}`;
-            mainContent.innerHTML = `<iframe width="100%" height="100%" src="${embeddUrl}" frameborder="0" allowfullscreen></iframe>`;
+            mainContent.innerHTML = `<iframe width="100%" height="70%" src="${embeddUrl}" frameborder="0" allowfullscreen></iframe>`;
         });
 
         // Add hover effect

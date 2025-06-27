@@ -21,7 +21,7 @@
     margin: 10px;
     padding: 20px;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     background-color: #fafafa;
 }
