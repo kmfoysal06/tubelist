@@ -8,21 +8,10 @@ if(!defined('ABSPATH')) {
 
 ?>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-
-        .container {
+        .tubelist-container {
             max-width: 1200px;
             margin: 0 auto;
+            margin-top: 20px;
             background-color: white;
             border: 2px solid #ccc;
             min-height: 600px;
@@ -30,13 +19,13 @@ if(!defined('ABSPATH')) {
             flex-direction: column;
         }
 
-        .top-section {
-            display: flex;
+        .tubelist-container .top-section {
+           display: flex;
             flex: 1;
             min-height: 400px;
         }
 
-        .main-content {
+       .tubelist-container .main-content {
             flex: 1;
             border: 1px solid #ddd;
             margin: 10px;
@@ -47,7 +36,7 @@ if(!defined('ABSPATH')) {
             background-color: #fafafa;
         }
 
-        .sidebar {
+        .tubelist-container .sidebar {
 		    width: 300px;
 		    height: 400px;
 		    border: 1px solid #ddd;
@@ -56,19 +45,18 @@ if(!defined('ABSPATH')) {
 		    overflow-y: auto;
 		}
 
-        .sidebar-item {
+        .tubelist-container .sidebar-item {
             display: flex;
             margin-bottom: 15px;
             border: 1px solid #eee;
             padding: 10px;
             cursor: pointer;
         }
-
-        .sidebar-item:last-child {
+        .tubelist-container .sidebar-item:last-child {
             margin-bottom: 0;
         }
 
-        .sidebar-image {
+        .tubelist-container .sidebar-image {
             width: 120px;
             height: 90px;
             background-color: #e0e0e0;
@@ -81,26 +69,26 @@ if(!defined('ABSPATH')) {
             color: #666;
         }
 
-        .sidebar-text {
+        .tubelist-container .sidebar-text {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        .sidebar-text h4 {
+        .tubelist-container .sidebar-text h4 {
             margin-bottom: 5px;
             font-size: 12px;
             color: #333;
         }
 
-        .sidebar-text p {
+        .tubelist-container .sidebar-text p {
             font-size: 10px;
             color: #666;
             line-height: 1.3;
         }
 
-        .bottom-section {
+        .tubelist-container .bottom-section {
             height: 150px;
             border: 1px solid #ddd;
             margin: 0 10px 10px 10px;
@@ -111,7 +99,7 @@ if(!defined('ABSPATH')) {
             background-color: #fafafa;
         }
 
-        .placeholder-text {
+        .tubelist-container .placeholder-text {
             color: #888;
             font-size: 16px;
             text-align: center;
@@ -122,24 +110,28 @@ if(!defined('ABSPATH')) {
                 flex-direction: column;
             }
             
-            .sidebar {
+            .tubelist-container .top-section {
+                flex-direction: column;
+            }
+            
+            .tubelist-container .sidebar {
                 width: auto;
                 margin: 0 10px 10px 10px;
             }
             
-            .sidebar-item {
+            .tubelist-container .sidebar-item {
                 flex-direction: column;
                 text-align: center;
             }
             
-            .sidebar-image {
+            .tubelist-container .sidebar-image {
                 margin: 0 auto 10px auto;
             }
         }
     </style>
-    <div class="container">
+    <div class="tubelist-container">
         <div class="top-section">
-            <div class="main-content youlist-main-video">
+            <div class="main-content tubelist-main-video">
                     <?php 
                     $id = $videos[0]['videoId'] ?? 'dQw4w9WgXcQ';
                     $embedd_url = "https://www.youtube.com/embed/{$id}"; 
@@ -174,7 +166,7 @@ if(!defined('ABSPATH')) {
         // Simple interactive functionality
         document.addEventListener('DOMContentLoaded', function() {
             const sidebarItems = document.querySelectorAll('.sidebar-item');
-            const mainContent = document.querySelector('.youlist-main-video');
+            const mainContent = document.querySelector('.tubelist-main-video');
             
             sidebarItems.forEach((item, index) => {
                 item.addEventListener('click', function() {
