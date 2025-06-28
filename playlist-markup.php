@@ -14,7 +14,7 @@ if(!defined('ABSPATH')) {
                     $id = $videos[0]['videoId'] ?? 'dQw4w9WgXcQ';
                     $embedd_url = "https://www.youtube.com/embed/{$id}"; 
                     ?>
-                    <iframe width="100%" height="70%" src="<?php echo esc_url($embedd_url); ?>" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="100%" height="100%" src="<?php echo esc_url($embedd_url); ?>" frameborder="0" allowfullscreen></iframe>
             </div>
             
             <div class="sidebar">
