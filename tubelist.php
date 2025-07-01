@@ -70,7 +70,13 @@ function tubelist_assets() {
     wp_register_style('tubelist-style', TUBELIST_URI . 'assets/css/playlist.css', [], filemtime(TUBELIST_DIR . 'assets/css/playlist.css'));
 
     wp_register_script('tubelist-script', TUBELIST_URI . 'assets/js/playlist.js', [], filemtime(TUBELIST_DIR . 'assets/js/playlist.js'), true);
-    if (has_shortcode(get_post()->post_content, 'tubelist')) {
+    $post_content = '';
+    if (is_singular()) {
+        $post_content = get_post()->post_content;
+    } elseif (is_home() || is_archive() || is_search()) {
+        $post_content = get_the_content();
+    }
+    if (has_shortcode($post_content, 'tubelist')) {
         wp_enqueue_style('tubelist-style');
         wp_enqueue_script('tubelist-script');
     } 
